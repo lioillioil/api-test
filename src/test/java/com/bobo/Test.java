@@ -12,5 +12,6 @@ public class Test {
     public void tester() {
         System.out.println("Test by master!");
         System.out.println("Test by dev!");
+        System.out.println("Test push to GitHub!");
     }
 }
