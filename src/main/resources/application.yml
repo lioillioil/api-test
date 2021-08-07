@@ -1,0 +1,17 @@
+spring:
+    profiles:
+        active: prod
+
+    # 热部署默配置
+    devtools:
+        restart:
+            enabled: true # 热部署默认会重启
+            additional-paths: src/main/java # 添加那个目录的文件需要restart
+            exclude: static/**,public/** # 排除目录的文件不需要restart
+
+mybatis:
+    mapper-locations: classpath:mapping/*Mapper.xml
+
+bobo:
+    swagger:
+        enable: true

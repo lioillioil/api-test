@@ -1,0 +1,20 @@
+server:
+    port: 8000
+    servlet:
+        context-path: /hi
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/demo?useTimezone=true&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+        username: root
+        password: lilibo
+
+mybatis-plus:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印详细SQL日志
+
+logging:
+    level:
+        com.baomidou: debug
+        org.springframework.jdbc.datasource.init: debug

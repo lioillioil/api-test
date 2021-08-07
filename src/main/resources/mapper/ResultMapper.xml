@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bobo.mapper.ResultMapper">
+    <resultMap id="resultVoMap" type="com.bobo.entity.ResultVo">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="student_id" property="studentId" jdbcType="INTEGER" />
+        <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+        <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+        <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+        <result column="score" property="score" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!-- 分页查询 -->
+    <select id="getResultPage" resultMap="resultVoMap">
+        SELECT
+            r.`id`,
+            r.`student_id`,
+            s.`name` AS student_name,
+            r.`subject_id`,
+            j.`name` AS subject_name,
+            r.`score`
+        FROM `result` r
+        INNER JOIN `student` s ON r.`student_id` = s.`id`
+        INNER JOIN `subject` j ON r.`subject_id` = j.`id`
+        <where>
+            <if test="result.id != null">
+                AND `id` = #{result.id}
+            </if>
+            <if test="result.studentId != null">
+                AND `student_id` = #{result.studentId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

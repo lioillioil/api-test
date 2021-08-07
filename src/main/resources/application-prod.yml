@@ -1,0 +1,62 @@
+server:
+    port: 9000
+#    address: 192.168.0.8
+
+spring:
+    autoconfigure:
+        exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        druid:
+            initial-size: 1
+            max-active: 20
+            min-idle: 1
+            max-wait: 60000
+            time-between-eviction-runs-millis: 60000
+            time-between-log-stats-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            max-evictable-idle-time-millis: 600000
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            validation-query: select 1
+            validation-query-timeout: 60000
+            use-global-datasource-stat: true
+            keep-alive: true
+            pool-prepared-statements: true
+            connection-properties: stat.mergeSql=true;stat.slowSqlMillis=5000
+            remove-abandoned: true
+            remove-abandoned-timeout: 1800
+            max-open-prepared-statements: 20
+            log-abandoned: true
+            filters: stat,wall,log4j
+            stat-view-servlet:
+                login-username: admin
+                login-password: lilibo
+        dynamic:
+            primary: master
+            datasource:
+                master:
+                    username: root
+                    password: lilibo
+                    driver-class-name: com.mysql.cj.jdbc.Driver
+                    url: jdbc:mysql://127.0.0.1:3306/demo?useTimezone=true&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+                slave_1:
+                    username: root
+                    password: lilibo
+                    driver-class-name: com.mysql.cj.jdbc.Driver
+                    url: jdbc:mysql://127.0.0.1:3306/demo?useTimezone=true&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+                slave_2:
+                    username: root
+                    password: lilibo
+                    driver-class-name: com.mysql.cj.jdbc.Driver
+                    url: jdbc:mysql://127.0.0.1:3306/demo?useTimezone=true&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+
+mybatis-plus:
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印详细SQL日志
+
+logging:
+    level:
+        com.baomidou: debug
+        org.springframework.jdbc.datasource.init: debug

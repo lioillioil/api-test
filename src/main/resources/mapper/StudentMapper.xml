@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bobo.mapper.StudentMapper">
+    <resultMap id="studentMap" type="com.bobo.entity.Student">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="no" property="no" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!-- 分页查询 -->
+    <select id="getStudentPage" resultMap="studentMap">
+        SELECT
+            `id`,
+            `no`,
+            `name`,
+            `address`,
+            `age`
+        FROM `student`
+        <where>
+            <if test="student.id != null">
+                AND `id` = #{student.id}
+            </if>
+            <if test="student.no != null">
+                AND `no` = #{student.no}
+            </if>
+            <if test="student.name != null">
+                AND `name` = #{student.name}
+            </if>
+            <if test="student.address != null">
+                AND `address` = #{student.address}
+            </if>
+            <if test="student.age != null">
+                AND `age` = #{student.age}
+            </if>
+        </where>
+    </select>
+
+</mapper>
