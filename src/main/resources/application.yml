@@ -1,6 +1,6 @@
 spring:
     profiles:
-        active: prod
+        active: dev
 
     # 热部署默配置
     devtools:
