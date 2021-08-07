@@ -11,5 +11,6 @@ public class Test {
     @org.junit.Test
     public void tester() {
         System.out.println("Test by master!");
+        System.out.println("Test by dev!");
     }
 }
